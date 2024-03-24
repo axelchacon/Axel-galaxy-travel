@@ -17,6 +17,13 @@ function Planets() {
     }
     fetchPlanets();
   }, []);
+  async function handleClick(event) {
+    event.preventDefault();
+    console.log(next);
+    const data = await getAllPlanets(next);
+    setPlanets(data.results);
+    setNext(data.next);
+  }
 
   return (
     <Container title="Planets">
@@ -52,7 +59,7 @@ function Planets() {
           </Card>
         ))}
       </Grid>
-      {next && <button>Next</button>}
+      {next && <button onClick={handleClick}>Next</button>}
     </Container>
   );
 }
