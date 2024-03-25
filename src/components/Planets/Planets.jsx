@@ -4,24 +4,26 @@ import { Container } from "../Container/Container";
 import Grid from "../Grid/Grid";
 import { getAllPlanets } from "../../services/planets_service";
 import { formatNumber } from "../../utils/format_number";
-
-function Planets() {
+//Parte 4.1: añadido lo de  onUpdatePlanets como props dentro la función Planets
+function Planets({ onUpdatePlanets }) {
   const [planets, setPlanets] = useState([]);
   const [next, setNext] = useState(null);
   useEffect(() => {
     async function fetchPlanets() {
       const data = await getAllPlanets();
-      console.log(data.results);
+      // console.log(data.results);
       setPlanets(data.results);
+      onUpdatePlanets(data.results); //Parte 4.1: añadido lo de  onUpdatePlanets
       setNext(data.next);
     }
     fetchPlanets();
-  }, []);
+  }, [onUpdatePlanets]); //Parte 4.1: añadido lo de  onUpdatePlanets
   async function handleClick(event) {
     event.preventDefault();
     console.log(next);
     const data = await getAllPlanets(next);
     setPlanets(data.results);
+    onUpdatePlanets(data.results); //Parte 4.1: añadido lo de  onUpdatePlanets
     setNext(data.next);
   }
 

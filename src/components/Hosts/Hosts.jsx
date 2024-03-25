@@ -12,7 +12,7 @@ function Hosts() {
   useEffect(() => {
     async function fetchHosts() {
       const data = await getAllHosts();
-      console.log(data.results);
+      // console.log(data.results);
       setHosts(data.results);
     }
     fetchHosts();
