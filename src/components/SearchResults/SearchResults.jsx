@@ -3,7 +3,7 @@ import { Container } from "../Container/Container";
 import Grid from "../Grid/Grid";
 
 import { formatNumber } from "../../utils/format_number";
-//Parte 4.1: añadido lo de  onUpdatePlanets como props dentro la función Planets
+
 function SearchResults({ results }) {
   return (
     <Container title="Search results">
