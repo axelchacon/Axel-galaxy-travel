@@ -1,11 +1,15 @@
 import { useState } from "react";
 import "./SearchForm.css";
-function SearchForm({ ca, data }) {
+function SearchForm({ ca, data, onSearchPlanets }) {
   const [name, setName] = useState("");
   const [terrain, setTerrain] = useState("");
   const [climate, setClimate] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
+    if (!name && !terrain && !climate) {
+      onSearchPlanets([]);
+      return;
+    }
     const hasName =
       name.length >= 1
         ? data.filter((planet) =>
@@ -21,7 +25,7 @@ function SearchForm({ ca, data }) {
         ? hasTerrain.filter((planet) => planet.climate.includes(climate))
         : hasTerrain;
     console.log(hasClimate);
-    //onSearchPlanets(hasClimate);
+    onSearchPlanets(hasClimate);
   }
   return (
     <form className="search-form" onSubmit={handleSubmit}>
